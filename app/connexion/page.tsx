@@ -133,18 +133,19 @@ const [loading, setLoading] =
             password,
 
             options: {
-              data: {
-                prenom,
-                nom,
-                date_naissance:
-                  dateNaissance,
-                sexe,
-                adresse,
-                code_postal:
-                  codePostal,
-                ville,
-              },
-            },
+  data: {
+    prenom,
+    nom,
+    date_naissance:
+      dateNaissance,
+    sexe,
+    adresse,
+    code_postal:
+      codePostal,
+    ville,
+    newsletter,
+  },
+},
           });
 
         if (error) {

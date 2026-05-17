@@ -159,26 +159,40 @@ export default function RootLayout({
                   </a>
 
                   <a
-                    href="/agenda"
-                    style={linkStyle}
-                  >
-                    Agenda
-                  </a>
+  href="/agenda"
+  style={linkStyle}
+>
+  Agenda
+</a>
 
-                </nav>
+<a
+  href="/dons"
+  style={{
+    ...linkStyle,
+    color: "#1e3a8a",
+    fontWeight: "bold",
+    borderBottom:
+      "2px solid #1e3a8a",
+    paddingBottom: 4,
+  }}
+>
+  Dons
+</a>
 
-                {/* CONNEXION */}
-                <div
-                  style={{
-                    minWidth: 220,
-                    display: "flex",
-                    justifyContent:
-                      "flex-end",
-                    alignItems:
-                      "center",
-                    gap: 15,
-                  }}
-                >
+</nav>
+
+{/* CONNEXION */}
+<div
+  style={{
+    minWidth: 220,
+    display: "flex",
+    justifyContent:
+      "flex-end",
+    alignItems:
+      "center",
+    gap: 15,
+  }}
+>
 
                   {user ? (
                     <>

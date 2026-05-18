@@ -20,10 +20,10 @@ export default function ConsultationsPage() {
     useState<any>(null);
 
   useEffect(() => {
-  getConsultations();
-  getUser();
-  getVotes();
-}, []);
+    getConsultations();
+    getUser();
+    getVotes();
+  }, []);
 
   async function getConsultations() {
 
@@ -59,45 +59,45 @@ export default function ConsultationsPage() {
     setUser(data.user);
   }
 
-async function voter(
-  consultationId: number,
-  choix: string
-) {
+  async function voter(
+    consultationId: number,
+    choix: string
+  ) {
 
-  if (!user) {
-    return;
-  }
+    if (!user) {
+      return;
+    }
 
-  const voteExistant = votes.find(
-    (v) =>
-      v.user_id === user.id &&
-      v.consultation_id === consultationId
-  );
+    const voteExistant = votes.find(
+      (v) =>
+        v.user_id === user.id &&
+        v.consultation_id === consultationId
+    );
 
-  if (voteExistant) {
+    if (voteExistant) {
 
-    await supabase
-      .from("votes")
-      .update({
-        choix,
-      })
-      .eq("id", voteExistant.id);
-
-  } else {
-
-    await supabase
-      .from("votes")
-      .insert([
-        {
-          consultation_id: consultationId,
-          user_id: user.id,
+      await supabase
+        .from("votes")
+        .update({
           choix,
-        },
-      ]);
-  }
+        })
+        .eq("id", voteExistant.id);
 
-  await getVotes();
-}
+    } else {
+
+      await supabase
+        .from("votes")
+        .insert([
+          {
+            consultation_id: consultationId,
+            user_id: user.id,
+            choix,
+          },
+        ]);
+    }
+
+    await getVotes();
+  }
 
   function getPourcentage(
     consultationId: number,
@@ -212,23 +212,60 @@ async function voter(
               "non"
             );
 
-          const abstention =
-            getPourcentage(
-              item.id,
-              "abstention"
-            );
+         const abstention =
+  getPourcentage(
+    item.id,
+    "abstention"
+  );
 
-          return (
-            <div
-              key={item.id}
-              style={{
-                background: "white",
-                borderRadius: 24,
-                padding: 35,
-                boxShadow:
-                  "0 8px 25px rgba(0,0,0,0.05)",
-              }}
-            >
+const getTimeRemaining = (
+  dateFin: string
+) => {
+
+  if (!dateFin) {
+    return "";
+  }
+
+  const endDate =
+    new Date(dateFin);
+
+  const now =
+    new Date();
+
+  const total =
+    endDate.getTime() -
+    now.getTime();
+
+  if (total <= 0) {
+    return "Consultation terminée";
+  }
+
+  const days = Math.floor(
+    total / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (total / (1000 * 60 * 60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (total / (1000 * 60)) % 60
+  );
+
+  return `${days}j ${hours}h ${minutes}min restantes`;
+};
+
+return (
+  <div
+    key={item.id}
+    style={{
+      background: "white",
+      borderRadius: 24,
+      padding: 35,
+      boxShadow:
+        "0 8px 25px rgba(0,0,0,0.05)",
+    }}
+  >
 
               <div
                 style={{
@@ -264,6 +301,56 @@ async function voter(
               >
                 {item.description}
               </p>
+
+              <div
+  style={{
+    display: "flex",
+    gap: 12,
+    flexWrap: "wrap",
+    marginBottom: 28,
+  }}
+>
+
+  <div
+    style={{
+      background: "#eff6ff",
+      color: "#1e3a8a",
+      padding: "10px 16px",
+      borderRadius: 999,
+      fontWeight: "bold",
+      fontSize: 14,
+    }}
+  >
+    👥 {
+      votes.filter(
+        (vote) =>
+          vote.consultation_id === item.id
+      ).length
+    } votants
+  </div>
+
+  {item.date_fin && (
+
+    <div
+      style={{
+        background: "#fef3c7",
+        color: "#92400e",
+        padding: "10px 16px",
+        borderRadius: 999,
+        fontWeight: "bold",
+        fontSize: 14,
+      }}
+    >
+      ⏳ {
+        getTimeRemaining(
+          item.date_fin
+        )
+      }
+    </div>
+
+  )}
+
+</div>
 
               <Barre
                 label="Oui"

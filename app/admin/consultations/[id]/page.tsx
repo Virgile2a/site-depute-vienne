@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
+
+import { useParams } from "next/navigation";
+
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -8,7 +14,11 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export default function NouvelleConsultationPage() {
+export default function ModifierConsultationPage() {
+
+  const params = useParams();
+
+  const id = params.id;
 
   const [title, setTitle] =
     useState("");
@@ -23,12 +33,46 @@ export default function NouvelleConsultationPage() {
     useState(true);
 
   const [loading, setLoading] =
-    useState(false);
+    useState(true);
 
   const [message, setMessage] =
     useState("");
 
-  async function createConsultation() {
+  useEffect(() => {
+    loadConsultation();
+  }, []);
+
+  async function loadConsultation() {
+
+    const { data } =
+      await supabase
+        .from("consultations")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (data) {
+
+      setTitle(data.title || "");
+
+      setDescription(
+        data.description || ""
+      );
+
+      setActive(data.active);
+
+      if (data.date_fin) {
+
+        setDateFin(
+          data.date_fin.slice(0, 16)
+        );
+      }
+    }
+
+    setLoading(false);
+  }
+
+  async function updateConsultation() {
 
     if (!title || !description) {
 
@@ -44,20 +88,19 @@ export default function NouvelleConsultationPage() {
     const { error } =
       await supabase
         .from("consultations")
-        .insert([
-          {
-            title,
-            description,
-            active,
-            date_fin:
-              dateFin || null,
-          },
-        ]);
+        .update({
+          title,
+          description,
+          active,
+          date_fin:
+            dateFin || null,
+        })
+        .eq("id", id);
 
     if (error) {
 
       setMessage(
-        "Erreur lors de la création."
+        "Erreur lors de la modification."
       );
 
       setLoading(false);
@@ -69,6 +112,19 @@ export default function NouvelleConsultationPage() {
       "/admin/consultations";
   }
 
+  if (loading) {
+
+    return (
+      <main
+        style={{
+          padding: 40,
+        }}
+      >
+        Chargement...
+      </main>
+    );
+  }
+
   return (
     <main
       style={{
@@ -76,7 +132,6 @@ export default function NouvelleConsultationPage() {
       }}
     >
 
-      {/* HEADER */}
       <div
         style={{
           marginBottom: 35,
@@ -90,21 +145,11 @@ export default function NouvelleConsultationPage() {
             marginBottom: 10,
           }}
         >
-          Nouvelle consultation
+          Modifier la consultation
         </h1>
-
-        <p
-          style={{
-            color: "#64748b",
-            fontSize: 18,
-          }}
-        >
-          Créez une nouvelle consultation citoyenne.
-        </p>
 
       </div>
 
-      {/* FORMULAIRE */}
       <div
         style={{
           background: "white",
@@ -138,7 +183,6 @@ export default function NouvelleConsultationPage() {
               )
             }
             style={inputStyle}
-            placeholder="Titre de la consultation"
           />
 
         </div>
@@ -168,12 +212,11 @@ export default function NouvelleConsultationPage() {
               minHeight: 180,
               resize: "vertical",
             }}
-            placeholder="Description de la consultation"
           />
 
         </div>
 
-        {/* DATE FIN */}
+        {/* DATE */}
         <div
           style={{
             marginBottom: 25,
@@ -248,7 +291,7 @@ export default function NouvelleConsultationPage() {
 
         {/* BOUTON */}
         <button
-          onClick={createConsultation}
+          onClick={updateConsultation}
           disabled={loading}
           style={{
             background: "#2563eb",
@@ -262,9 +305,7 @@ export default function NouvelleConsultationPage() {
             cursor: "pointer",
           }}
         >
-          {loading
-            ? "Création..."
-            : "Créer la consultation"}
+          Enregistrer les modifications
         </button>
 
       </div>

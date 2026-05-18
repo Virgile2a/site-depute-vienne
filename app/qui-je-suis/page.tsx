@@ -2,46 +2,83 @@ export default function QuiJeSuisPage() {
   return (
     <main
       style={{
-        background: "#f5f7fb",
+        background: "#f8fafc",
         minHeight: "100vh",
       }}
     >
 
-      {/* HERO */}
+      {/* HERO FULL WIDTH */}
       <section
         style={{
-          padding: "120px 40px 100px",
+          width: "100%",
           background:
             "linear-gradient(135deg, #062b66 0%, #0f172a 100%)",
           color: "white",
+          padding: "140px 24px 120px",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
 
         <div
           style={{
-            maxWidth: 1200,
-            margin: "auto",
+            position: "absolute",
+            top: -200,
+            right: -200,
+            width: 500,
+            height: 500,
+            borderRadius: "50%",
+            background:
+              "rgba(255,255,255,0.05)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: -120,
+            left: -120,
+            width: 320,
+            height: 320,
+            borderRadius: "50%",
+            background:
+              "rgba(255,255,255,0.04)",
+          }}
+        />
+
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            textAlign: "center",
+            position: "relative",
+            zIndex: 2,
           }}
         >
 
           <div
             style={{
-              fontSize: 14,
+              display: "inline-block",
+              background:
+                "rgba(255,255,255,0.12)",
+              border:
+                "1px solid rgba(255,255,255,0.15)",
+              padding: "12px 20px",
+              borderRadius: 999,
               fontWeight: "bold",
-              letterSpacing: 2,
-              marginBottom: 20,
-              opacity: 0.8,
+              marginBottom: 30,
+              backdropFilter: "blur(10px)",
             }}
           >
-            CANDIDAT AUX ÉLECTIONS LÉGISLATIVES 2027
+            Élections législatives 2027
           </div>
 
           <h1
             style={{
-              fontSize: 68,
-              lineHeight: 1.1,
-              marginBottom: 30,
-              maxWidth: 900,
+              fontSize: "clamp(52px, 8vw, 96px)",
+              lineHeight: 1,
+              marginBottom: 40,
+              fontWeight: 800,
             }}
           >
             Virgile Flores
@@ -49,14 +86,19 @@ export default function QuiJeSuisPage() {
 
           <p
             style={{
-              fontSize: 24,
+              fontSize: 28,
               lineHeight: 1.8,
               maxWidth: 900,
-              color: "rgba(255,255,255,0.88)",
+              margin: "0 auto",
+              opacity: 0.92,
             }}
           >
-            Entrepreneur, homme de terrain et candidat indépendant
-            dans la 4ᵉ circonscription de la Vienne.
+            Entrepreneur, investisseur local
+            et citoyen engagé,
+            je souhaite défendre une politique
+            plus proche des habitants,
+            plus concrète
+            et plus participative.
           </p>
 
         </div>
@@ -66,72 +108,73 @@ export default function QuiJeSuisPage() {
       {/* INTRO */}
       <section
         style={{
-          padding: "90px 40px",
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "100px 24px",
         }}
       >
 
         <div
           style={{
-            maxWidth: 1100,
-            margin: "auto",
+            background: "white",
+            borderRadius: 32,
+            padding: "70px 60px",
+            boxShadow:
+              "0 20px 60px rgba(0,0,0,0.06)",
           }}
         >
 
           <div
             style={{
-              background: "white",
-              borderRadius: 30,
-              padding: 50,
-              boxShadow:
-                "0 10px 40px rgba(0,0,0,0.06)",
-              lineHeight: 1.9,
-              fontSize: 18,
-              color: "#1f2937",
+              color: "#1e3a8a",
+              fontWeight: "bold",
+              marginBottom: 24,
+              fontSize: 14,
+              letterSpacing: 1,
+              textTransform: "uppercase",
             }}
           >
-
-            <h2
-              style={{
-                fontSize: 42,
-                marginBottom: 30,
-                color: "#062b66",
-              }}
-            >
-              Mon parcours
-            </h2>
-
-            <p>
-              Je m’appelle Virgile Flores.
-              Je suis né le 28 juin 1980 à Ajaccio, en Corse.
-            </p>
-
-            <p>
-              Mon parcours est celui d’un homme de terrain,
-              construit par le travail, les responsabilités,
-              l’investissement et les rencontres.
-            </p>
-
-            <p>
-              Au cours de ma vie professionnelle,
-              j’ai exercé plusieurs métiers qui m’ont permis
-              de comprendre différentes réalités du quotidien
-              vécues par de nombreux Français.
-            </p>
-
-            <p>
-              J’ai notamment travaillé à la CCAS de Porticcio,
-              comme facteur à La Poste,
-              comme chef de chantier,
-              mais aussi comme entrepreneur.
-            </p>
-
-            <p>
-              J’ai créé une société d’animation
-              et assuré la gérance de la partie
-              bar/restauration d’un complexe sportif.
-            </p>
-
+            Mon parcours
           </div>
+
+          <h2
+            style={{
+              fontSize: "clamp(38px, 5vw, 62px)",
+              lineHeight: 1.1,
+              color: "#0f172a",
+              marginBottom: 40,
+            }}
+          >
+            Un parcours construit
+            par le travail
+            et l’expérience du terrain.
+          </h2>
+
+          <p style={textStyle}>
+            Je m’appelle Virgile Flores,
+            je suis né le 28 juin 1980 à Ajaccio, en Corse.
+          </p>
+
+          <p style={textStyle}>
+            Mon parcours professionnel a toujours été guidé
+            par le travail, l’adaptation et l’envie d’avancer.
+            J’ai exercé plusieurs métiers :
+            à la CCAS de Porticcio,
+            facteur à La Poste,
+            chef de chantier,
+            entrepreneur dans l’animation
+            et gérant de la partie bar-restauration
+            d’un complexe sportif.
+          </p>
+
+          <p style={textStyle}>
+            Le sport a également joué un rôle important dans ma vie,
+            particulièrement le tennis pratiqué en compétition pendant
+            de nombreuses années.
+            Il m’a appris la rigueur,
+            le dépassement de soi
+            et la persévérance.
+          </p>
 
         </div>
 
@@ -140,174 +183,123 @@ export default function QuiJeSuisPage() {
       {/* SUISSE */}
       <section
         style={{
-          padding: "0 40px 90px",
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px 100px",
         }}
       >
 
         <div
           style={{
-            maxWidth: 1100,
-            margin: "auto",
             display: "grid",
             gridTemplateColumns:
-              "1fr 1fr",
+              "repeat(auto-fit, minmax(320px, 1fr))",
             gap: 40,
+            alignItems: "center",
           }}
         >
 
-          <div
+          <img
+            src="https://images.openai.com/static-rsc-4/yxm4990nFvcrF-Zhp-RB-Yd_UCC68NzvfhtvhzFYVB-IYPgh3fba5FRAMAPEeVbqiSNOtTY7w4YVGPK3_vCgS5o4SeOb_3ZCeZajyFWGK4EIDc9WAtHthktu8aeTjkBXGbChyQvS9-Ndmnd7av4108eI5BErg9tb2V9h4oOB4bt9bgiYxoLBdNeok-0zIRBq?purpose=fullsize"
+            alt="Châtellerault"
             style={{
-              background: "white",
+              width: "100%",
+              height: 500,
+              objectFit: "cover",
               borderRadius: 30,
-              padding: 50,
               boxShadow:
-                "0 10px 40px rgba(0,0,0,0.06)",
+                "0 20px 50px rgba(0,0,0,0.12)",
             }}
-          >
+          />
+
+          <div>
+
+            <div
+              style={{
+                color: "#1e3a8a",
+                fontWeight: "bold",
+                marginBottom: 20,
+                fontSize: 14,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+              }}
+            >
+              Une nouvelle vie
+            </div>
 
             <h2
               style={{
-                fontSize: 36,
-                marginBottom: 25,
-                color: "#062b66",
+                fontSize: "clamp(34px, 5vw, 56px)",
+                lineHeight: 1.1,
+                marginBottom: 30,
+                color: "#0f172a",
               }}
             >
-              Un nouveau départ
+              De la Corse
+              à la Vienne.
             </h2>
 
-            <p
-              style={{
-                lineHeight: 1.9,
-                fontSize: 18,
-                color: "#374151",
-              }}
-            >
-              En 2014, j’ai décidé de quitter la Corse
-              pour partir travailler en Suisse.
+            <p style={textStyle}>
+              En 2014, à l’âge de 34 ans,
+              j’ai décidé de quitter la Corse
+              pour partir en Suisse.
             </p>
 
-            <p
-              style={{
-                lineHeight: 1.9,
-                fontSize: 18,
-                color: "#374151",
-              }}
-            >
+            <p style={textStyle}>
               Pendant près de dix ans,
               j’ai travaillé chez SOS OXYGÈNE,
-              spécialisée dans l’assistance respiratoire,
-              où j’ai évolué de technicien
-              jusqu’à un poste de responsable.
+              où j’ai évolué de technicien à responsable.
             </p>
 
+            <p style={textStyle}>
+              Durant cette période,
+              j’ai commencé à investir en France
+              avec l’envie de trouver un territoire dynamique,
+              accessible et à taille humaine.
+            </p>
+
+            <p style={textStyle}>
+  En 2017,
+  j’ai découvert Châtellerault
+  à l’occasion de la visite d’un immeuble.
+  J’ai immédiatement eu un véritable coup de cœur
+  pour la ville,
+  son potentiel,
+  sa qualité de vie
+  et plus largement pour toute la région.
+</p>
+
+<p style={textStyle}>
+  Au fil des années,
+  j’ai continué à investir localement
+  et à découvrir le territoire.
+</p>
+
+<p style={textStyle}>
+  En 2024,
+  avec ma compagne,
+  nous avons décidé de nous installer
+  définitivement dans la région,
+  à Senillé-Saint-Sauveur,
+  où nous sommes aujourd’hui très heureux.
+</p>
+
+<p style={textStyle}>
+  Ma compagne travaille
+  au centre thermal de La Roche-Posay,
+  un établissement reconnu
+  et emblématique de notre territoire.
+</p>
+
+<p style={textStyle}>
+  Depuis notre arrivée,
+  nous prenons beaucoup de plaisir
+  à découvrir les communes,
+  les paysages
+  et la richesse du patrimoine local.
+</p>
+
           </div>
-
-          <div
-            style={{
-              background:
-                "linear-gradient(135deg, #062b66 0%, #0f172a 100%)",
-              borderRadius: 30,
-              padding: 50,
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-
-            <div>
-
-              <div
-                style={{
-                  fontSize: 18,
-                  opacity: 0.8,
-                  marginBottom: 20,
-                }}
-              >
-                EXPÉRIENCE
-              </div>
-
-              <h3
-                style={{
-                  fontSize: 44,
-                  lineHeight: 1.3,
-                }}
-              >
-                Près de 10 ans
-                dans le domaine médical
-                et le management.
-              </h3>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* CHATELLERAULT */}
-      <section
-        style={{
-          padding: "0 40px 90px",
-        }}
-      >
-
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: "auto",
-            background: "white",
-            borderRadius: 30,
-            padding: 60,
-            boxShadow:
-              "0 10px 40px rgba(0,0,0,0.06)",
-          }}
-        >
-
-          <h2
-            style={{
-              fontSize: 42,
-              marginBottom: 30,
-              color: "#062b66",
-            }}
-          >
-            Pourquoi Châtellerault
-          </h2>
-
-          <p
-            style={{
-              lineHeight: 1.9,
-              fontSize: 18,
-              color: "#374151",
-            }}
-          >
-            En 2017, après avoir visité plusieurs régions,
-            j’ai découvert Châtellerault et ses alentours.
-          </p>
-
-          <p
-            style={{
-              lineHeight: 1.9,
-              fontSize: 18,
-              color: "#374151",
-            }}
-          >
-            Très rapidement,
-            j’ai eu un véritable coup de cœur
-            pour cette ville et cette région.
-          </p>
-
-          <p
-            style={{
-              lineHeight: 1.9,
-              fontSize: 18,
-              color: "#374151",
-            }}
-          >
-            J’ai décidé d’y investir,
-            puis de m’y installer définitivement
-            avec ma compagne en 2024.
-          </p>
 
         </div>
 
@@ -316,58 +308,87 @@ export default function QuiJeSuisPage() {
       {/* ENGAGEMENT */}
       <section
         style={{
-          padding: "0 40px 120px",
+          background: "white",
+          padding: "120px 24px",
         }}
       >
 
         <div
           style={{
-            maxWidth: 1100,
-            margin: "auto",
-            background:
-              "linear-gradient(135deg, #062b66 0%, #0f172a 100%)",
-            borderRadius: 30,
-            padding: 60,
-            color: "white",
+            maxWidth: 1000,
+            margin: "0 auto",
+            textAlign: "center",
           }}
         >
 
-          <h2
+          <div
             style={{
-              fontSize: 42,
-              marginBottom: 30,
+              color: "#1e3a8a",
+              fontWeight: "bold",
+              marginBottom: 20,
+              fontSize: 14,
+              letterSpacing: 1,
+              textTransform: "uppercase",
             }}
           >
-            Mon engagement
+            Engagement politique
+          </div>
+
+          <h2
+            style={{
+              fontSize: "clamp(40px, 6vw, 68px)",
+              lineHeight: 1.1,
+              marginBottom: 40,
+              color: "#0f172a",
+            }}
+          >
+            Redonner la parole
+            aux citoyens.
           </h2>
 
           <p
             style={{
-              lineHeight: 1.9,
-              fontSize: 20,
-              color:
-                "rgba(255,255,255,0.88)",
+              fontSize: 22,
+              lineHeight: 2,
+              color: "#475569",
+              marginBottom: 30,
             }}
           >
-            Je souhaite défendre une politique
-            plus proche des habitants,
-            plus transparente
-            et davantage tournée vers la participation citoyenne.
+            Pendant longtemps,
+            la politique ne m’intéressait pas.
+            Comme beaucoup de Français,
+            j’avais le sentiment que les partis traditionnels
+            étaient déconnectés du quotidien des habitants.
           </p>
 
           <p
             style={{
-              lineHeight: 1.9,
-              fontSize: 20,
-              color:
-                "rgba(255,255,255,0.88)",
+              fontSize: 22,
+              lineHeight: 2,
+              color: "#475569",
+              marginBottom: 30,
             }}
           >
-            Mon objectif est simple :
-            écouter les citoyens,
-            défendre le territoire
-            et consulter davantage les habitants
-            avant les grands votes à l’Assemblée nationale.
+            Mon expérience locale à Châtellerault
+            et les rencontres avec les habitants
+            m’ont progressivement convaincu
+            qu’il fallait une politique
+            plus proche du terrain,
+            plus sincère
+            et plus participative.
+          </p>
+
+          <p
+            style={{
+              fontSize: 22,
+              lineHeight: 2,
+              color: "#475569",
+            }}
+          >
+            C’est dans cet esprit
+            que j’ai décidé de me présenter
+            aux élections législatives de 2027
+            dans la 4ᵉ circonscription de la Vienne.
           </p>
 
         </div>
@@ -377,3 +398,10 @@ export default function QuiJeSuisPage() {
     </main>
   );
 }
+
+const textStyle = {
+  fontSize: 20,
+  lineHeight: 2,
+  color: "#475569",
+  marginBottom: 28,
+};

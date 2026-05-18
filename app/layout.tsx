@@ -121,14 +121,15 @@ export default function RootLayout({
 
                 {/* MENU */}
                 <nav
-                  style={{
-                    flex: 1,
-                    display: "flex",
-                    justifyContent:
-                      "center",
-                    gap: 40,
-                  }}
-                >
+  style={{
+    flex: 1,
+    display: "flex",
+    justifyContent:
+      "center",
+    gap: 28,
+    flexWrap: "wrap",
+  }}
+>
 
                   <a
                     href="/"
@@ -164,6 +165,12 @@ export default function RootLayout({
 >
   Agenda
 </a>
+<a
+  href="/qui-je-suis"
+  style={linkStyle}
+>
+  Qui je suis
+</a>
 
 <a
   href="/dons"
@@ -184,7 +191,7 @@ export default function RootLayout({
 {/* CONNEXION */}
 <div
   style={{
-    minWidth: 220,
+    minWidth: 170,
     display: "flex",
     justifyContent:
       "flex-end",

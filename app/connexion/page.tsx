@@ -144,6 +144,7 @@ const [loading, setLoading] =
       codePostal,
     ville,
     newsletter,
+    email,
   },
 },
           });

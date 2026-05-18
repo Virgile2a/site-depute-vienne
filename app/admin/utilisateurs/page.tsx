@@ -239,27 +239,47 @@ export default function AdminUsersPage() {
 
                       )}
 
-                      {user.newsletter && (
+                     {user.newsletter && (
 
-                        <div
-                          style={{
-                            background:
-                              "#16a34a",
-                            color:
-                              "white",
-                            padding:
-                              "8px 14px",
-                            borderRadius:
-                              999,
-                            fontWeight:
-                              "bold",
-                            fontSize: 14,
-                          }}
-                        >
-                          Newsletter
-                        </div>
+  <div
+    style={{
+      background:
+        "#16a34a",
+      color:
+        "white",
+      padding:
+        "8px 14px",
+      borderRadius:
+        999,
+      fontWeight:
+        "bold",
+      fontSize: 14,
+    }}
+  >
+    Newsletter
+  </div>
 
-                      )}
+)}
+
+<div
+  style={{
+    background:
+      "#1e3a8a",
+    color:
+      "white",
+    padding:
+      "8px 14px",
+    borderRadius:
+      999,
+    fontWeight:
+      "bold",
+    fontSize: 14,
+    textTransform:
+      "capitalize",
+  }}
+>
+  {user.role || "citoyen"}
+</div>
 
                     </div>
 
@@ -318,18 +338,78 @@ export default function AdminUsersPage() {
                       </div>
 
                       <div>
-                        <strong>
-                          ID utilisateur :
-                        </strong>{" "}
-                        {
-                          user.user_id
-                        }
-                      </div>
+  <strong>
+    Email :
+  </strong>{" "}
+  {user.email || "Non renseigné"}
+</div>
 
                     </div>
 
                   </div>
+<div
+  style={{
+    marginTop: 30,
+  }}
+>
 
+  <div
+    style={{
+      fontWeight: "bold",
+      marginBottom: 10,
+      color: "#111827",
+    }}
+  >
+    Rôle
+  </div>
+
+  <select
+    value={user.role || "citoyen"}
+    onChange={async (e) => {
+
+      await supabase
+        .from("profiles")
+        .update({
+          role: e.target.value,
+        })
+        .eq("id", user.id);
+
+      getUsers();
+    }}
+    style={{
+      padding: "12px 16px",
+      borderRadius: 14,
+      border: "1px solid #d1d5db",
+      fontWeight: "bold",
+      background: "white",
+      minWidth: 220,
+      cursor: "pointer",
+    }}
+  >
+
+    <option value="citoyen">
+      citoyen
+    </option>
+
+    <option value="moderateur">
+      moderateur
+    </option>
+
+    <option value="redacteur">
+      redacteur
+    </option>
+
+    <option value="admin">
+      admin
+    </option>
+
+    <option value="super_admin">
+      super_admin
+    </option>
+
+  </select>
+
+</div>
                   {/* ACTIONS */}
                   <div
                     style={{

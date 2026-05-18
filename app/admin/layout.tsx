@@ -15,11 +15,14 @@ export default function AdminLayout({
 }) {
 
   const [user, setUser] =
-    useState<any>(null);
+  useState<any>(null);
 
-  useEffect(() => {
-    getUser();
-  }, []);
+const [role, setRole] =
+  useState("");
+
+useEffect(() => {
+  getUser();
+}, []);
 
   async function getUser() {
     const { data } =
@@ -33,6 +36,17 @@ export default function AdminLayout({
     }
 
     setUser(data.user);
+
+const { data: profile } =
+  await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", data.user.id)
+    .single();
+
+if (profile?.role) {
+  setRole(profile.role);
+}
   }
 
   async function logout() {
@@ -140,12 +154,16 @@ export default function AdminLayout({
                 Messages
               </a>
 
-              <a
-                href="/admin/roles"
-                style={linkStyle}
-              >
-                Rôles & sécurité
-              </a>
+              {role === "super_admin" && (
+
+  <a
+    href="/admin/roles"
+    style={linkStyle}
+  >
+    Rôles & sécurité
+  </a>
+
+)}
 
             </nav>
 
